@@ -38,7 +38,7 @@ public class HolidaysAdapter extends RecyclerView.Adapter<HolidaysAdapter.Holida
     @Override
     public void onBindViewHolder(@NonNull HolidayViewHolder holder, int position) {
         Holiday holiday = holidays.get(position);
-        holder.nameTextView.setText(holiday.getLocalName());
+        holder.nameTextView.setText(holiday.getName());
         holder.itemView.setTag(holiday);
     }
 

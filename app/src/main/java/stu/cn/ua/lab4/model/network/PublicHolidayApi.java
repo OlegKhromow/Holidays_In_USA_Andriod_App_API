@@ -5,9 +5,13 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface PublicHolidayApi {
 
-    @GET("v3/PublicHolidays/2023/US")
-    Call<List<HolidayNetworkEntity>> getHolidays();
+    @GET("v3/PublicHolidays/{year}/{countryCode}")
+    Call<List<HolidayNetworkEntity>> getHolidays(@Path("year") int year, @Path("countryCode") String countryCode);
+
+    @GET("v3/AvailableCountries")
+    Call<List<CountryNetworkEntity>> getCountries();
 }

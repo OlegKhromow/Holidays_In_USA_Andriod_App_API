@@ -17,15 +17,18 @@ public class HolidayDbEntity {
     @ColumnInfo
     private String localName;
     @ColumnInfo
+    private String countryName;
+    @ColumnInfo
     private String type;
 
     public HolidayDbEntity() {
     }
 
-    public HolidayDbEntity(HolidayNetworkEntity holidayNetwork) {
+    public HolidayDbEntity(HolidayNetworkEntity holidayNetwork, String countryName) {
         this.date = holidayNetwork.getDate();
         this.name = holidayNetwork.getName();
         this.localName = holidayNetwork.getLocalName();
+        this.countryName = countryName;
         this.type = holidayNetwork.getTypes();
     }
 
@@ -68,5 +71,13 @@ public class HolidayDbEntity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 }

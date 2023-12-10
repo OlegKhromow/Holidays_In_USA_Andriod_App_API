@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import stu.cn.ua.lab4.App;
+import stu.cn.ua.lab4.R;
 import stu.cn.ua.lab4.databinding.ActivityMainBinding;
 import stu.cn.ua.lab4.details.DetailsActivity;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel viewModel;
     private HolidaysAdapter adapter;
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +35,17 @@ public class MainActivity extends AppCompatActivity {
             binding.holidaysList.setVisibility(viewState.isShowList() ? View.VISIBLE : View.GONE);
             binding.progress.setVisibility(viewState.isShowProgress() ? View.VISIBLE : View.GONE);
             binding.errrormsg.setVisibility(viewState.isShowError() ? View.VISIBLE : View.GONE);
+            if(viewState.isShowList())
+                binding.title.setText(getString(R.string.title_country, viewState.getHolidays().get(0).getCountryName()));
+            else
+                binding.title.setText(getString(R.string.title));
             adapter.setHolidays(viewState.getHolidays());
         });
 
-        viewModel.getCountries();
+        binding.searchButton.setOnClickListener(v -> {
+            String countryName = binding.countryEditText.getText().toString();
+            viewModel.getCountryCode(countryName);
+        });
 
         initHolidayList();
     }

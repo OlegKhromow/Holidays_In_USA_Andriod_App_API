@@ -33,12 +33,15 @@ public class DetailsActivity extends AppCompatActivity {
                 case SUCCESS:
                     Holiday holiday = holidayResult.getData();
                     binding.holidayName.setText(holiday.getName());
+                    binding.countryName.setText(holiday.getCountryName());
                     binding.localName.setText(holiday.getLocalName());
                     binding.date.setText(holiday.getDate());
                     binding.type.setText(holiday.getType());
                     break;
                 case EMPTY:
                     binding.holidayName.setVisibility(View.GONE);
+                    binding.countryName.setVisibility(View.GONE);
+                    binding.countryNameTitle.setVisibility(View.GONE);
                     binding.localName.setVisibility(View.GONE);
                     binding.localNameTitle.setVisibility(View.GONE);
                     binding.date.setVisibility(View.GONE);

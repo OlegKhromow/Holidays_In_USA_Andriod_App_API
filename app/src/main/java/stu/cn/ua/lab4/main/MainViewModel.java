@@ -1,7 +1,5 @@
 package stu.cn.ua.lab4.main;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -13,6 +11,7 @@ import stu.cn.ua.lab4.model.Cancellable;
 import stu.cn.ua.lab4.model.Holiday;
 import stu.cn.ua.lab4.model.Result;
 import stu.cn.ua.lab4.model.PublicHolidayService;
+import stu.cn.ua.lab4.model.network.CountryNetworkEntity;
 
 public class MainViewModel extends BaseViewModel {
     private Result<List<Holiday>> holidayResult = Result.empty();
@@ -20,7 +19,7 @@ public class MainViewModel extends BaseViewModel {
     private Cancellable cancellable;
 
     {
-        updateViewState(Result.empty());
+        updateViewState(Result.firstEntry());
     }
 
     public MainViewModel(PublicHolidayService publicHolidayService) {
@@ -38,9 +37,9 @@ public class MainViewModel extends BaseViewModel {
         return stateLiveData;
     }
 
-    public void getCountries(){
+    private void getHolidays(CountryNetworkEntity country){
         updateViewState(Result.loading());
-        cancellable  = getPublicHolidayService().getHolidays(new Callback<List<Holiday>>() {
+        cancellable  = getPublicHolidayService().getHolidays(country, new Callback<List<Holiday>>() {
             @Override
             public void onError(Throwable error) {
                 if(holidayResult.getStatus() != Result.Status.SUCCESS)
@@ -50,6 +49,20 @@ public class MainViewModel extends BaseViewModel {
             @Override
             public void onResult(List<Holiday> data) {
                 updateViewState(Result.success(data));
+            }
+        });
+    }
+
+    public void getCountryCode(String countryName){
+        cancellable = getPublicHolidayService().getCountry(countryName, new Callback<CountryNetworkEntity>() {
+            @Override
+            public void onError(Throwable error) {
+                updateViewState(Result.error(error));
+            }
+
+            @Override
+            public void onResult(CountryNetworkEntity data) {
+                getHolidays(data);
             }
         });
     }

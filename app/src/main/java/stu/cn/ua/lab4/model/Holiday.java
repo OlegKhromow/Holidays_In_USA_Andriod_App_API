@@ -11,18 +11,20 @@ public class Holiday {
     private String date;
     private String name;
     private String localName;
+    private String countryName;
     private String type;
 
-    public Holiday(long id, String date, String name, String localName, String type) {
+    public Holiday(long id, String date, String name, String localName, String countryName, String type) {
         this.id = id;
         this.date = date;
         this.name = name;
         this.localName = localName;
+        this.countryName = countryName;
         this.type = type;
     }
 
     public Holiday(HolidayDbEntity holidayDb) {
-        this(holidayDb.getId(), holidayDb.getDate(), holidayDb.getName(), holidayDb.getLocalName(), holidayDb.getType());
+        this(holidayDb.getId(), holidayDb.getDate(), holidayDb.getName(), holidayDb.getLocalName(), holidayDb.getCountryName(), holidayDb.getType());
     }
 
     public long getId() {
@@ -43,6 +45,10 @@ public class Holiday {
 
     public String getLocalName() {
         return localName;
+    }
+
+    public String getCountryName() {
+        return countryName;
     }
 
     public String getType() {

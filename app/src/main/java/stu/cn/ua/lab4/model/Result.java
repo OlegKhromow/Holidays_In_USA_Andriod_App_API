@@ -2,6 +2,7 @@ package stu.cn.ua.lab4.model;
 
 public class Result<T> {
     public enum Status{
+        FIRST,
         EMPTY,
         LOADING,
         SUCCESS
@@ -15,6 +16,10 @@ public class Result<T> {
         this.status = status;
         this.data = data;
         this.error = error;
+    }
+
+    public static <T> Result<T> firstEntry(){
+        return new Result<>(Status.FIRST, null, null);
     }
 
     public static <T> Result<T> error(Throwable error){

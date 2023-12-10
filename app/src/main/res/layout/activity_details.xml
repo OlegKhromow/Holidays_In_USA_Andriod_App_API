@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/drawable"
     android:padding="@dimen/default_padding"
     tools:context=".details.DetailsActivity">
 
@@ -13,40 +14,61 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/error"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/holiday_name"
         style="@style/Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:background="@drawable/border"
         android:gravity="center"
+        android:padding="@dimen/small_padding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Holiday name" />
 
     <TextView
+        android:id="@+id/country_name_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/country"
+        android:textColor="@color/faded_white"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/local_name_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/local_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
+        android:textColor="@color/faded_white"
+        android:paddingEnd="@dimen/default_padding"
         android:text="@string/local_name"
         android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/date_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/holiday_name" />
+        app:layout_constraintTop_toBottomOf="@+id/country_name_title" />
 
     <TextView
         android:id="@+id/date_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
+        android:textColor="@color/faded_white"
         android:text="@string/date"
         android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/type_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/local_name_title" />
 
@@ -55,8 +77,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
+        android:textColor="@color/faded_white"
         android:text="@string/type"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_title" />
 
@@ -65,12 +89,23 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="local_name_title, date_title, type_title" />
+        app:constraint_referenced_ids="country_name_title, local_name_title, date_title, type_title" />
+
+    <TextView
+        android:id="@+id/country_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBaseline_toBaselineOf="@id/country_name_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        tools:text="Country" />
 
     <TextView
         android:id="@+id/local_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_padding"
         android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@id/local_name_title"
         app:layout_constraintEnd_toEndOf="parent"

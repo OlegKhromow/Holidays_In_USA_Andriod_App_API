@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">Countries</string>
-    <string name="Title">Holidays in USA</string>
-    <string name="error">Opps!\nSome error happen. No data was found</string>
+    <string name="app_name">Holidays</string>
+    <string name="title">Holidays of the current year</string>
+    <string name="title_country">Holidays in %1$s</string>
+    <string name="error">Opps!\nNo data was found. Try again</string>
     <string name="local_name">Local name:</string>
     <string name="date">Date:</string>
     <string name="type">Type:</string>
+    <string name="enter_name_country">Enter name or country code</string>
+    <string name="search">Search</string>
+    <string name="country">Country</string>
 </resources>
